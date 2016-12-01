@@ -1,21 +1,36 @@
 package com.mercacortex.tablayout.adapter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.mercacortex.tablayout.R;
 import com.mercacortex.tablayout.fragment.CustomFragment;
+
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private int tabCount;
+    private Context context;
 
-    public ViewPagerAdapter(FragmentManager fm, int tabCount) {
+    public ViewPagerAdapter(FragmentManager fm, int tabCount, Context context) {
         super(fm);
         this.tabCount = tabCount;
+        this.context = context;
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        //super.getPageTitle(position);
+        //Podemos devolver directamente el array de la memoria
+        //porque no vamos a cambiar las pestañas en tiempo de ejecución
+        return context.getResources().getStringArray(R.array.tabs)[position];
+    }
+
+    //Aquí también puedo hacer la gestión de todos los iconos,
+    //botones flotantes, etc.
     @Override
     public Fragment getItem(int position) {
         //La gente se crea varias clases Fragment iguales
@@ -48,6 +63,11 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 break;
         }
         return fragment;
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return super.getItemPosition(object);
     }
 
     @Override

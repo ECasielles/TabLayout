@@ -19,6 +19,7 @@ public class CustomFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         //Inflo la vista
         View rootView = inflater.inflate(R.layout.fragment_custom, container, false);
         //Inicializo el TextView
@@ -29,7 +30,7 @@ public class CustomFragment extends Fragment {
     }
 
     //
-    public static Fragment newInstance(Bundle arguments) {
+    public static CustomFragment newInstance(Bundle arguments) {
         CustomFragment customFragment = new CustomFragment();
         if(arguments != null) {
             customFragment.setArguments(arguments);
